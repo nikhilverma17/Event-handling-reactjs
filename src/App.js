@@ -1,23 +1,41 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+  const [handleOver, setHandleOver] = useState(false)
+  const [name,setName]=useState(" ")
+  const [newname,setNewName]=useState(" ")
+
+
+  function handleChange(event){
+    setName(event.target.value)
+  }
+  
+  function handleClick(){
+    setNewName(name)
+  }
+
+
+  function onOver() {
+    setHandleOver(true)
+  }
+
+  function onOut() {
+    setHandleOver(false)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>Hello {newname}</h1>
+      <input onChange={handleChange} type='text' placeholder='Your Name' />
+      <button
+        style={{ backgroundColor: handleOver ? "black" : "white" }}
+        onClick={handleClick}
+        onMouseOver={onOver}
+        onMouseOut={onOut}>
+        Submit</button>
+
     </div>
   );
 }
